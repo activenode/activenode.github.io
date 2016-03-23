@@ -104,7 +104,10 @@ xtag.register('x-slide', {
     },
     events: {
         tap: function(event){
-            this.nextAction();
+          console.log('@event', event);
+            if (event.target.nodeName.toLowerCase()!='a') {
+              this.nextAction();
+            }
         },
         'keypress': function(event){
             top.alert('test');
