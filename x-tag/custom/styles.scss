@@ -128,3 +128,30 @@ x-slide-item-code {
     display: block;
     margin-bottom:20px;
 }
+
+x-giphy {
+  display:block;
+  position: absolute;
+  z-index: 99999;
+  top:50%;
+  left:50%;
+  display:block;
+  @include transition(all 500ms);
+  @include transform(rotate(45deg));
+  background:green;
+
+  &:not(.loaded) {
+    width:50px;
+    height:50px;
+  }
+
+  visibility: hidden;
+
+  &.created {
+    visibility: visible;
+  }
+
+  &.loaded {
+    @include transform(translateX(-50%) translateY(-50%));
+  }
+}

@@ -1,7 +1,40 @@
-xtag.register('x-twitter', {
+xtag.register('x-giphy', {
     content: function(){/*
+      <div class="giphy-floater">
+        <img src="" />
+      </div>
+    */},
+    lifecycle: {
+      created: function(){
+        this.classList.add('created');
+      },
+      inserted: function(){
+        fetch('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cat')
+          .then((response)=>{
+            if (response.status==200) {
+              response.json().then((jsondata)=>{
+                var giphy_data = jsondata.data;
 
-    */}
+                console.log('this', this, '∆g', giphy_data);
+                console.log('url', giphy_data.image_url);
+
+                this.querySelector('img').setAttribute('src', giphy_data.image_url);
+
+                if (!this.animate) {
+                  console.error('You are using a browser that does not support animate(..)');
+                }
+
+                this.classList.add('loaded');
+                this.animate([
+                  {width: '50px', height: '50px'},
+                  {width: giphy_data.image_width+'px',height: giphy_data.image_height+'px'}
+                ],1000);
+
+              });
+            }
+          });
+      },
+    }
 });
 
 xtag.register('x-slide-item-code', {
@@ -45,9 +78,6 @@ xtag.register('x-slide-item-code', {
     }
 })
 
-xtag.register('x-giphy', {
-    //http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cat
-});
 
 xtag.register('x-presentation', {
     lifecycle: {
