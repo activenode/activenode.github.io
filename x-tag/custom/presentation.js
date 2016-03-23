@@ -9,7 +9,8 @@ xtag.register('x-giphy', {
         this.classList.add('created');
       },
       inserted: function(){
-        fetch('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag=cat')
+        var tag = this.getAttribute('tag');
+        fetch('http://api.giphy.com/v1/gifs/random?api_key=dc6zaTOxFJmzC&tag='+tag)
           .then((response)=>{
             if (response.status==200) {
               response.json().then((jsondata)=>{
@@ -34,6 +35,13 @@ xtag.register('x-giphy', {
             }
           });
       },
+    },
+    events: {
+      tap: function(e){
+        e.stopPropagation();
+        e.preventDefault();
+        this.parentNode.removeChild(this);
+      }
     }
 });
 

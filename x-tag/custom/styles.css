@@ -132,16 +132,16 @@ x-giphy {
   -webkit-transition: all 500ms;
   -moz-transition: all 500ms;
   transition: all 500ms;
-  -webkit-transform: rotate(45deg);
-  -moz-transform: rotate(45deg);
-  -ms-transform: rotate(45deg);
-  -o-transform: rotate(45deg);
-  transform: rotate(45deg);
-  background: green;
+  -webkit-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -moz-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -ms-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  -o-transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
   visibility: hidden; }
   x-giphy:not(.loaded) {
     width: 50px;
-    height: 50px; }
+    height: 50px;
+    background: #28478d; }
   x-giphy.created {
     visibility: visible; }
   x-giphy.loaded {

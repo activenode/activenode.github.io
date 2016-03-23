@@ -137,12 +137,12 @@ x-giphy {
   left:50%;
   display:block;
   @include transition(all 500ms);
-  @include transform(rotate(45deg));
-  background:green;
+  @include transform(translateX(-50%) translateY(-50%) rotate(45deg));
 
   &:not(.loaded) {
     width:50px;
     height:50px;
+    background:lighten(#0C152A, 25%);
   }
 
   visibility: hidden;
