@@ -112,5 +112,19 @@ x-slide-item {
 
     code {
         font-size: 19px;
+
+
     }
+
+    .codewrap {
+        border:1px solid rgba(255,255,255,0.6);
+        padding:1ex;
+        display: block;
+
+    }
+}
+
+x-slide-item-code {
+    display: block;
+    margin-bottom:20px;
 }

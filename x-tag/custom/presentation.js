@@ -7,6 +7,21 @@ xtag.register('x-twitter', {
 xtag.register('x-slide-item-code', {
     lifecycle: {
         created: function(){
+            if (this.getAttribute('lang')=='html') {
+                var htmlStr = '';
+                for (var i=0; i<this.childNodes.length; i++) {
+                    if (this.childNodes[i].nodeType==8) {
+                        htmlStr = this.childNodes[i].nodeValue;
+                        htmlStr = htmlStr.replace('<!--','');
+                        htmlStr = htmlStr.replace('-->','');
+                        htmlStr = htmlStr.replace(/</g,'&lt;');
+                        htmlStr = htmlStr.replace(/>/g,'&gt;');
+                        this.innerHTML = htmlStr;
+                        break;
+                    }
+                }
+            }
+
             var whitespaceBefore = this.innerHTML.match(/^[\s]+/);
             if (whitespaceBefore && whitespaceBefore.length) {
                 whitespaceBefore = whitespaceBefore[0].replace("\n",'');
@@ -23,9 +38,9 @@ xtag.register('x-slide-item-code', {
 
 
             this.innerHTML =
-                '<code><pre>'
+                '<div class="codewrap"><code><pre>'
                 + this.innerHTML
-                + '</code></pre>';
+                + '</pre></code></div>';
         }
     }
 })
@@ -37,7 +52,7 @@ xtag.register('x-giphy', {
 xtag.register('x-presentation', {
     lifecycle: {
         created: function(){
-            this.childNodes.forEach((node) => {
+            Array.prototype.slice.call(this.childNodes).forEach((node) => {
                 if (node.nodeName != 'X-SLIDE') {
                     //removing invalid nodes from presentation
                     this.removeChild(node);
@@ -63,6 +78,15 @@ xtag.register('x-slide-item', {
 });
 
 xtag.register('x-slide', {
+    accessors: {
+        testAccessor: {
+            attribute: {},
+            get: function(){
+                top.alert('test-accessor was get()-called');
+                return 'some value';
+            }
+        }
+    },
     lifecycle: {
         created: function(){
             if (this.parentNode.nodeName!='X-PRESENTATION') {
@@ -79,8 +103,11 @@ xtag.register('x-slide', {
         }
     },
     events: {
-        tap: function(){
+        tap: function(event){
             this.nextAction();
+        },
+        'keypress': function(event){
+            top.alert('test');
         }
     },
     methods: {

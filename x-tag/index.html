@@ -39,10 +39,6 @@
             </x-slide-item>
 
             <x-slide-item>
-                hallo
-            </x-slide-item>
-
-            <x-slide-item>
                 <h3>So what's the advantage of X-Tag?</h3>
                 <p>
                     All the advantages that are named over and over again
@@ -90,42 +86,141 @@
             <x-slide-item>
                 <h3>Register your custom components with X-Tag</h3>
                 <x-slide-item-code lang="html">
-
+                    <!--
+                    <x-my-custom-element></x-my-custom-element>
+                    -->
                 </x-slide-item-code>
                 <x-slide-item-code lang="js">
                     xtag.register('x-my-custom-element', {
                         //definitions
                     });
                 </x-slide-item-code>
-            </x-slide-item>
-            <x-slide-item>
-                <!--
-                Every custom element you want
-                to upgrade to a real dynamic component
-                needs to be registered to xtag
-                -->
-                <x-slide-item-code>
-                    xtag.register('x-my-custom-element', {
-                        //definitions
-                    });
-                </x-slide-item-code>
+
+                <p>
+                    Every custom element you want
+                    to upgrade to a real dynamic component
+                    needs to be registered to xtag.
+                </p>
             </x-slide-item>
 
             <x-slide-item>
-                <!--
-                Any of these components _can_
-                have 3 important
-                -->
-                <x-slide-item-code>
-                    xtag.register('x-my-custom-element', {
-                        //definitions
-                    });
-                </x-slide-item-code>
+                <h3>What now?</h3>
+
+                <p>
+                    Any registered component _can_
+                    have attributes that define
+                    their behaviour.
+                    <br /><em>- Everything is optional.</em>
+                </p>
             </x-slide-item>
         </x-slide>
 
         <x-slide>
+            <x-slide-item>
+                <h2>The lifecycle</h2>
 
+                <x-slide-item-code lang="js">
+                    xtag.register('x-my-custom-element', {
+                        lifecycle: {
+                            created: function(){
+                                top.alert("Wow I am born!");
+                            },
+                            inserted: function(){
+                                top.alert('So cool, been inserted into the DOM');
+                            },
+                            removed: function(){
+                                top.alert('Oh noes, why you hate me?');
+                            },
+                            attributeChanged: function(attrName, oldVal, newVal) {
+                                //kind of angular watch for attributes
+                                top.alert('Hey, stop touching me');
+                            }
+
+                        }
+                    });
+                </x-slide-item-code>
+            </x-slide-item>
+
+            <x-slide-item>
+                <h2>The content and Bindings</h2>
+
+                <x-slide-item-code lang="html">
+                    <!--
+                    <x-my-input />
+                    -->
+                </x-slide-item-code>
+
+                <x-slide-item-code lang="js">
+                    xtag.register('x-my-input', {
+                        content: '&lt;div class="input_wrapper"&gt;&lt;input type="text" /&gt;&lt;/div&gt;',
+
+                        events: {
+                            'keypress:delegate(input):keypass(13)': function(){
+                                this.info();
+                                //so nice:
+                                //we can call the methods
+                                //from the tag everywhere within the tag
+                            }
+                        },
+
+                        methods: {
+                            info: function(){
+                                top.alert('Fires only on input when enter was pressed');
+                            }
+                        }
+                    });
+                </x-slide-item-code>
+            </x-slide-item>
+
+
+            <x-slide-item>
+                <h3>BTW: There is also multiline-content</h3>
+
+
+                <x-slide-item-code lang="js">
+                    xtag.register('x-my-input', {
+                        content: function(){/*
+                        &lt;div class="input_wrapper"&gt;
+                            &lt;label&gt;  Some Label &lt;/label&gt;
+                            &lt;input type="text" /&gt;
+                        &lt;/div&gt;
+                        */}
+                    });
+                </x-slide-item-code>
+            </x-slide-item>
+
+
+            <x-slide-item>
+                <h2>Accessors: Setters and Getters</h2>
+
+                <p>
+                    We got methods, events and lifecycle covered.
+                    What's missing is the accessors
+                </p>
+
+                <x-slide-item-code lang="js">
+                    xtag.register('x-my-input', {
+                        //....
+                        accessors: {
+                            someAccessor: {
+                              // links to the 'some-accessor' attribute
+                              attribute: {},
+                              set: function(){},
+                              get: function(){}
+                            }
+                        }
+                        //....
+                    });
+                </x-slide-item-code>
+
+                <p>
+                    Just call the following code to test in console:
+                </p>
+
+                <x-slide-item-code lang="js">
+                    document.querySelector('x-slide').testAccessor;
+                </x-slide-item-code>
+            </x-slide-item>
         </x-slide>
     </x-presentation>
 
