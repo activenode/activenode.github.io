@@ -3,8 +3,132 @@
 <head>
     <meta charset="UTF-8">
     <title>X-Tag Presentation / by David Lorenz (activenode.de)</title>
+    <script src="lib/x-tag-core.min.js"></script>
+    <link href='https://fonts.googleapis.com/css?family=Roboto:200,400,500' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="custom/styles.css" type="text/css" />
 </head>
 <body>
-    
+
+    <x-presentation>
+        <x-slide>
+            <x-slide-item>
+                <h1>X-Tag</h1>
+                <h2>A presentation by David Lorenz</h2>
+                <p>
+                    <a class="blueish" href="http://activenode.de">activenode.de</a>
+                </p>
+                <p>
+                    <a class="greenish" href="https://github.com/activenode">@github</a>,
+                    <a class="greenish" href="https://github.com/activenode">@twitter</a>
+                </p>
+            </x-slide-item>
+        </x-slide>
+
+        <x-slide>
+            <x-slide-item>
+                <h3>What is X-Tag?</h3>
+                <!--
+                What is X-Tag?
+                Basic library that allows rapid component development
+                in terms of Web Components.
+                -->
+                <p>
+                    Basic 20kb library that allows rapid component development
+                    in terms of Web Components.
+                </p>
+            </x-slide-item>
+
+            <x-slide-item>
+                hallo
+            </x-slide-item>
+
+            <x-slide-item>
+                <h3>So what's the advantage of X-Tag?</h3>
+                <p>
+                    All the advantages that are named over and over again
+                    when it comes to modular development of HTML components.
+                </p>
+
+                <ul>
+                    <li>Make small parts of your HTML reusable over and over again</li>
+                    <li>Maybe replace JQuery with X-Tag</li>
+                </ul>
+            </x-slide-item>
+
+            <x-slide-item>
+                <h3>What is X-Tag *not*?</h3>
+                <p>
+                    X-Tag is not Polymer.
+                </p>
+                <p>
+                    It's not meant to compete with Polymer
+                    as Polymer is a big-fat-booty library
+                    with HtmlImports, WebComponents and f***ng everything.
+                </p>
+                <p>
+                    X-Tag provides modularization from IE9+
+                    with a little small head of 20kb (all Polyfills included!)
+                </p>
+            </x-slide-item>
+
+
+            <x-slide-item>
+                <h3>So, what is shown in this presentation?</h3>
+                <p>
+                    The basics, guys, the basics!
+                    You're old enough to dig deeper into the topic.
+                </p>
+            </x-slide-item>
+
+            <x-slide-item>
+                <h2>Let's get ready to rumble</h2>
+                <h3>X-Tag Code Time</h3>
+            </x-slide-item>
+        </x-slide>
+
+        <x-slide>
+            <x-slide-item>
+                <h3>Register your custom components with X-Tag</h3>
+                <x-slide-item-code lang="html">
+
+                </x-slide-item-code>
+                <x-slide-item-code lang="js">
+                    xtag.register('x-my-custom-element', {
+                        //definitions
+                    });
+                </x-slide-item-code>
+            </x-slide-item>
+            <x-slide-item>
+                <!--
+                Every custom element you want
+                to upgrade to a real dynamic component
+                needs to be registered to xtag
+                -->
+                <x-slide-item-code>
+                    xtag.register('x-my-custom-element', {
+                        //definitions
+                    });
+                </x-slide-item-code>
+            </x-slide-item>
+
+            <x-slide-item>
+                <!--
+                Any of these components _can_
+                have 3 important
+                -->
+                <x-slide-item-code>
+                    xtag.register('x-my-custom-element', {
+                        //definitions
+                    });
+                </x-slide-item-code>
+            </x-slide-item>
+        </x-slide>
+
+        <x-slide>
+
+        </x-slide>
+    </x-presentation>
+
+    <script src="custom/presentation.js" async defer></script>
 </body>
 </html>

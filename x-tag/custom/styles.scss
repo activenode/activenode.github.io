@@ -1,0 +1,116 @@
+@import "bourbon";
+
+@include keyframes(CreateSlide) {
+    0% {
+        opacity:0;
+        transform: scale(0.9) rotateX(5deg) rotateY(15deg) translateZ(0);
+        @include filter(blur(4px));
+    }
+
+    100% {
+        opacity:1;
+        transform: scale(1) rotateX(0) rotateY(0) translateZ(0);
+        @include filter(none);
+    }
+}
+
+body {
+    margin:0;
+    padding:0;
+    width:100%;
+    height:100vh;
+    overflow: hidden;
+    background-color: lighten(#0C152A, 5%);
+    font-family: 'Roboto', sans-serif;
+
+    -webkit-font-smoothing: antialiased;
+
+    a {
+        color:white;
+        text-decoration: none;
+        display:inline-block;
+        border-bottom:2px dotted lighten(#0C152A, 15%);
+    }
+
+    .blueish {
+        color: #4E9CB5;
+    }
+
+    .greenish {
+        color: #8CB56B;
+    }
+
+    h1,h2 {
+        font-weight: 500;
+    }
+}
+
+x-slide {
+    display: block;
+    width:100%;
+    height:100vh;
+    overflow: auto;
+    background:#0C152A;
+    position: absolute;
+    top:0; left:0;
+    @include transition(all 500ms);
+
+    &.slide-intro {
+        animation: CreateSlide 1s;
+    }
+
+    &:not(:first-child) {
+        opacity:0;
+        visibility: hidden;
+        @include transform(scale(0.95));
+    }
+}
+
+x-slide-item {
+    color:white;
+    display:inline-block;
+    position: absolute;
+    left:50%; top:50%;
+    @include transform(translateX(-80%) translateY(-50%));
+    @include transition(all 750ms);
+
+
+    opacity:0;
+    visibility: hidden;
+    pointer-events: none;
+
+
+    &.item-shown:not(.item-finished) {
+        @include transform(translateX(-50%) translateY(-50%));
+        opacity:1;
+        visibility: visible;;
+        pointer-events: all;
+    }
+
+    h1 {
+        font-size:500%;
+    }
+
+    h2 {
+        font-size:250%;
+        font-weight:200;
+    }
+
+    h3 {
+        font-size:200%;
+
+        ~ p {
+            font-size: 125%;
+            line-height:1.3;
+            color: lighten(#0C152A, 65%);
+
+            &:nth-child(2n+1) {
+                color: #8CB56B;
+            }
+        }
+    }
+
+    code {
+        font-size: 19px;
+    }
+}

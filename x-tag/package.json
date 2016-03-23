@@ -1,0 +1,22 @@
+{
+  "name": "x-tag-presentation",
+  "version": "1.0.0",
+  "description": "A presentation about x-tag with x-tag",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "x-tag",
+    "js",
+    "client"
+  ],
+  "author": "David Lorenz, activenode.de",
+  "license": "MIT",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-sass": "^2.2.0",
+    "node-bourbon": "^4.2.8"
+  },
+  "node-build-version": "v0.12.4"
+}
