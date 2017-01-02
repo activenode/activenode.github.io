@@ -16,6 +16,7 @@
   "author": "David Lorenz <info@activenode.de>",
   "license": "MIT",
   "dependencies": {
+    "hapi": "^16.1.0",
     "lowdb": "^0.14.0"
   }
 }

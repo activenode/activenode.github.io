@@ -12,6 +12,40 @@
 
         }
 
+        .lock-layer {
+            display:block;
+            width:100vw;
+            height:100vh;
+            background:#222;
+            position: fixed;
+            top:0; left:0;
+        }
+
+        .lock-layer__text {
+            display:block;
+            color:white;
+            font-size:70px;
+            font-family: Courier New, Courier, monospace;
+            margin:10px;
+            position: absolute;
+            top:50%;
+            transform:translateY(-50%);
+            width:100%;
+            text-align: center;
+        }
+        body:not(.game-started) .lock-layer__text:last-child {
+            display:none;
+        }
+
+        body.game-started:not(.game-ended) .lock-layer {
+            display:none;
+        }
+
+
+        body.game-started.game-ended .lock-layer__text:not(:last-child) {
+            display:none;
+        }
+
         #controls {
             width:100%;
             display:block;
@@ -57,7 +91,8 @@
             font-size:11px;
             color:white;
             display: block;
-            opacity:0.4;
+            opacity:0.9;
+            -webkit-font-smoothing: antialiased;
         }
         #controls .ctrl:first-child {
             margin-right:20px;
@@ -146,6 +181,18 @@
             </div>
         </div>
     </div>
+    <div class="lock-layer">
+        <div class="lock-layer__text">Click to start</div>
+        <div class="lock-layer__text"><strong>Thank you!</strong></div>
+    </div>
     
+    <script>
+        var lockLayer = document.querySelector('.lock-layer');
+        var gameStarter = function(){
+            startGame();
+            lockLayer.removeEventListener('click', gameStarter);
+        };
+        lockLayer.addEventListener('click', gameStarter);
+    </script>
 </body>
 </html>
